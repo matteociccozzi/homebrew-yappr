@@ -15,6 +15,7 @@ class Yappr < Formula
   depends_on :macos => :sonoma
   depends_on "jq"
   depends_on "python@3.12"
+  depends_on "uv"
 
   def install
     # Scripts and helpers go on PATH
