@@ -38,22 +38,39 @@ class Yappr < Formula
 
   def caveats
     <<~EOS
-      yappr requires three macOS permissions granted manually:
+      ── Step 1: Install Hammerspoon (push-to-talk hotkey) ──────────────────
+        brew install --cask hammerspoon
 
-        1. Microphone → YapprSttDaemon
-           System Settings → Privacy & Security → Microphone
+      ── Step 2: Run first-time setup ───────────────────────────────────────
+        yappr setup
+        # Downloads the Nemotron STT model (~200 MB), installs mlx-lm,
+        # creates config dirs, and writes ~/.hammerspoon/init.lua.
 
-        2. Accessibility → Hammerspoon
-           System Settings → Privacy & Security → Accessibility
+      ── Step 3: Grant macOS permissions (required — cannot be automated) ───
 
-        3. Input Monitoring → Hammerspoon
+        a) Input Monitoring → Hammerspoon
            System Settings → Privacy & Security → Input Monitoring
+           Toggle Hammerspoon ON.
+           Required so Hammerspoon can detect the Ctrl+Option+Y hotkey globally.
 
-      After install:
-        yappr setup          # downloads Nemotron STT model (~200 MB, one-time)
-        yappr daemon start
+        b) Accessibility → Hammerspoon
+           System Settings → Privacy & Security → Accessibility
+           Toggle Hammerspoon ON.
+           Required so Hammerspoon can type the transcribed text at the cursor.
+
+        c) Microphone → YapprSttDaemon
+           Start the daemon once — macOS will show a prompt automatically:
+             yappr daemon start
+           Or add it manually: System Settings → Privacy & Security → Microphone
+
+      ── Step 4: Reload Hammerspoon and start services ──────────────────────
+        # Click the Hammerspoon menu bar icon → Reload Config
         yappr server start
+
+      ── Step 5: Verify ─────────────────────────────────────────────────────
         yappr doctor
+
+      Hold Ctrl+Option+Y to dictate. Release to finalize and type.
 
       Full setup guide:
         https://github.com/matteociccozzi/yappr/blob/main/docs/installation.md
