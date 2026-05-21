@@ -49,6 +49,7 @@ class Yappr < Formula
            System Settings → Privacy & Security → Input Monitoring
 
       After install:
+        yappr setup          # downloads Nemotron STT model (~200 MB, one-time)
         yappr daemon start
         yappr server start
         yappr doctor
