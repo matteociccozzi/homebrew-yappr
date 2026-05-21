@@ -1,12 +1,12 @@
 class Yappr < Formula
   desc "Local push-to-talk voice dictation for macOS Apple Silicon"
   homepage "https://github.com/matteociccozzi/yappr"
-  version "0.1.0"
 
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/matteociccozzi/yappr/releases/download/v#{version}/yappr-#{version}-macos-arm64.tar.gz"
-      sha256 "PLACEHOLDER_UPDATE_ON_FIRST_RELEASE"
+      # Updated automatically by bump-homebrew-formula-action on each release
+      sha256 "0000000000000000000000000000000000000000000000000000000000000000"
     else
       odie "yappr requires Apple Silicon (arm64). Intel Macs are not supported."
     end
